@@ -35,12 +35,16 @@ public class P1Controller : MonoBehaviour
     {
         SpeedPowerup moreSpeed = col.gameObject.GetComponent<SpeedPowerup>();
         LifePowerUp moreLife = col.gameObject.GetComponent<LifePowerUp>();
+        LifeDecrease lessLife = col.gameObject.GetComponent<LifeDecrease>();
 
         if (moreSpeed != null){speed += moreSpeed.speedIncrease; Destroy(moreSpeed.gameObject);}
 
         if (moreLife != null){life -= moreLife.lifeIncrease; Destroy(moreLife.gameObject);}
 
+        if (lessLife != null){life -= lessLife.lifeDecrease; Destroy(lessLife.gameObject);}
+
         //FIREBALL - THROW TO DESTROY OBJECT
+        //If enemy is hit, decrease life
 
     }
 }
