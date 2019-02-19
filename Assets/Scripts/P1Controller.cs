@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,10 +42,24 @@ public class P1Controller : MonoBehaviour
 
         if (moreLife != null){life -= moreLife.lifeIncrease; Destroy(moreLife.gameObject);}
 
-        if (lessLife != null){life -= lessLife.lifeDecrease; Destroy(lessLife.gameObject);}
+        if (lessLife != null)
+        {
+            if (life == 0)
+            {
+                Destroy(charac);
+                
+            }
+            else
+            {
+                charac.position = new Vector2(charac.position.x - 3, charac.position.y);
+                life -= lessLife.lifeDecrease; Destroy(lessLife.gameObject);
+            }
+            
+        }
 
         //FIREBALL - THROW TO DESTROY OBJECT
         //If enemy is hit, decrease life
 
     }
+
 }
