@@ -28,7 +28,10 @@ public class P1Controller : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            charac.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
+            if (charac.position.y > 6f)
+                charac.position = charac.position;
+            else
+                charac.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
         }
 
     }
@@ -44,15 +47,23 @@ public class P1Controller : MonoBehaviour
 
         if (lessLife != null)
         {
-            if (life == 0)
+            if (life == 0 || life - lessLife.lifeDecrease<=0)
             {
-                Destroy(charac);
-                
+                Destroy(charac.gameObject);
+                //end game
             }
             else
             {
-                charac.position = new Vector2(charac.position.x - 3, charac.position.y);
                 life -= lessLife.lifeDecrease; Destroy(lessLife.gameObject);
+                if (horizonatal_mvmt > 0)
+                {
+                    charac.position = new Vector2(charac.position.x - 3, charac.position.y);
+                }
+                else
+                {
+                    charac.position = new Vector2(charac.position.x + 3, charac.position.y);
+                }
+
             }
             
         }
