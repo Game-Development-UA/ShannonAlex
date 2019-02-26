@@ -11,6 +11,10 @@ public class P1Controller : MonoBehaviour
     public float speed;
     public float life;
     public Rigidbody2D charac;
+    public ParticleSystem blood;
+    public Transform spawn;
+    public Transform explosion;
+
 
 
     // Start is called before the first frame update
@@ -49,18 +53,21 @@ public class P1Controller : MonoBehaviour
         {
             if (life == 0 || life - lessLife.lifeDecrease<=0)
             {
+                Instantiate(explosion, spawn);
                 Destroy(charac.gameObject);
-                //end game
+                UnityEngine.SceneManagement.SceneManager.LoadScene("EndGame");
             }
             else
             {
                 life -= lessLife.lifeDecrease; Destroy(lessLife.gameObject);
                 if (horizonatal_mvmt > 0)
                 {
+                    Instantiate(blood, spawn);
                     charac.position = new Vector2(charac.position.x - 3, charac.position.y);
                 }
                 else
                 {
+                    Instantiate(blood, spawn);
                     charac.position = new Vector2(charac.position.x + 3, charac.position.y);
                 }
 
