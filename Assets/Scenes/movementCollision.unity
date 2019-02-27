@@ -6199,7 +6199,7 @@ MonoBehaviour:
     type: 3}
   maxJumps: 2
   groundedRaycastOrigin: {fileID: 177594826}
-  groundedRayLength: 0.1
+  groundedRayLength: 0.2
 --- !u!1001 &1380064291
 PrefabInstance:
   m_ObjectHideFlags: 0
