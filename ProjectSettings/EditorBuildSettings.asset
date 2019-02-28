@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/homescreen.unity
     guid: 1650282134cfa5c4ba4ae12e193f617b
   - enabled: 1
-    path: Assets/Scenes/movementCollision.unity
+    path: Assets/Scenes/Level1.unity
     guid: 02d9bab79a32fd3459eebc8169831dbd
   - enabled: 1
     path: Assets/Scenes/EndGame.unity
