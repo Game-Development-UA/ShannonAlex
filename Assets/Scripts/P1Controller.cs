@@ -20,6 +20,7 @@ public class P1Controller : MonoBehaviour
     int jump_counter;
     public Transform groundedRaycastOrigin;
     public float groundedRayLength;
+    private SpriteRenderer SR;
 
     void Update()
     {
@@ -39,6 +40,25 @@ public class P1Controller : MonoBehaviour
                 jump_counter++;
             }
         }
+        if (charac.position.y < -20)
+        {
+            Instantiate(explosion, spawn);
+            Destroy(charac.gameObject);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("EndGame");
+        }
+        GameObject appearance = GameObject.Find("Player/Appearance");//Grabs child object of player
+        SR = appearance.GetComponent<SpriteRenderer>(); //Grabes sprite renderer of apparance
+
+        //Acitvates flipx based on button pressed.
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            SR.flipX = true;
+        }
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            SR.flipX = false;
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -54,7 +74,7 @@ public class P1Controller : MonoBehaviour
 
         if (moreSpeed != null){speed += moreSpeed.speedIncrease; Destroy(moreSpeed.gameObject);}
 
-        if (moreLife != null){life -= moreLife.lifeIncrease; Destroy(moreLife.gameObject);}
+        if (moreLife != null){life += moreLife.lifeIncrease; Destroy(moreLife.gameObject);}
 
         if (lessLife != null)
         {
